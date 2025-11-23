@@ -8,5 +8,6 @@ dependencies = [
     "air",
     "python-dotenv>=1.0.0",
     "plotly>=5.18.0",
-    "httpx>=0.25.0"
+    "httpx>=0.25.0",
+    "fastapi[standard]>=0.121.3",
 ]
