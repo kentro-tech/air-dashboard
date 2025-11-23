@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Air Pollution Dashboard{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-cyan-50">
+    <nav class="bg-white shadow-lg border-b-4 border-blue-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                    </svg>
+                    <a href="/" class="text-xl font-bold text-gray-800 hover:text-blue-600">Air Demo</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="/current" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Current</a>
+                    <a href="/trends" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Trends</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <p class="text-gray-500 text-sm text-center">
+                Data powered by <a href="https://open-meteo.com/" target="_blank" class="text-blue-600 hover:text-blue-800">Open-Meteo Air Quality API</a> | Built with <a href="https://feldroy.github.io/air/" target="_blank" class="text-blue-600 hover:text-blue-800">Air Framework</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

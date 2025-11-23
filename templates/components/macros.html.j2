@@ -1,0 +1,59 @@
+{# Reusable component macros #}
+
+{% macro stat_card(value, label, color) %}
+<div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-{{ color }}-500">
+    <div class="text-3xl font-bold text-{{ color }}-600">{{ "{:,}".format(value) if value is number else value }}</div>
+    <div class="text-gray-600 text-sm mt-1 font-medium">{{ label }}</div>
+</div>
+{% endmacro %}
+
+{% macro chart_card(chart_html) %}
+<div class="bg-white rounded-lg shadow-lg p-4">
+    {{ chart_html|safe }}
+</div>
+{% endmacro %}
+
+{% macro city_table(title, cities) %}
+<div class="bg-white rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold text-gray-900 mb-4">{{ title }}</h3>
+    {% if cities %}
+    <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+            <thead class="border-b-2 border-gray-300">
+                <tr>
+                    <th class="text-left py-3 px-2 text-gray-700 font-semibold">City</th>
+                    <th class="text-center py-3 px-2 text-gray-700 font-semibold">AQI</th>
+                    <th class="text-right py-3 px-2 text-gray-700 font-semibold">PM2.5</th>
+                    <th class="text-right py-3 px-2 text-gray-700 font-semibold">PM10</th>
+                    <th class="text-right py-3 px-2 text-gray-700 font-semibold">CO</th>
+                    <th class="text-right py-3 px-2 text-gray-700 font-semibold">NO₂</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for city in cities %}
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="py-3 px-2 text-gray-900 font-medium">{{ city.name }}</td>
+                    <td class="py-3 px-2 text-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
+                            {% if city.aqi == 1 %}bg-green-100 text-green-800
+                            {% elif city.aqi == 2 %}bg-cyan-100 text-cyan-800
+                            {% elif city.aqi == 3 %}bg-amber-100 text-amber-800
+                            {% elif city.aqi == 4 %}bg-red-100 text-red-800
+                            {% else %}bg-purple-100 text-purple-800{% endif %}">
+                            {{ city.aqi_label }}
+                        </span>
+                    </td>
+                    <td class="py-3 px-2 text-right text-gray-700">{{ "%.1f"|format(city.components.pm2_5) }}</td>
+                    <td class="py-3 px-2 text-right text-gray-700">{{ "%.1f"|format(city.components.pm10) }}</td>
+                    <td class="py-3 px-2 text-right text-gray-700">{{ "%.0f"|format(city.components.co) }}</td>
+                    <td class="py-3 px-2 text-right text-gray-700">{{ "%.1f"|format(city.components.no2) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-gray-500">No data available</p>
+    {% endif %}
+</div>
+{% endmacro %}

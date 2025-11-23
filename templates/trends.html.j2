@@ -1,0 +1,46 @@
+{% extends "base.html.j2" %}
+{% from "components/macros.html.j2" import chart_card %}
+
+{% block title %}Air Quality Trends - Air Framework Demo{% endblock %}
+
+{% block content %}
+<main class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Air Quality Trends</h1>
+        <p class="text-gray-600">7-day historical air pollution trends for major cities</p>
+    </div>
+
+    <!-- Info Banner -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-lg">
+        <p class="text-blue-900">
+            <strong>About this dashboard:</strong> This page demonstrates time-series data visualization
+            using line charts. Data is fetched from Open-Meteo's historical air quality API and shows
+            hourly readings over the past 7 days.
+        </p>
+    </div>
+
+    <!-- AQI Trends Chart -->
+    <div class="mb-8">
+        {{ chart_card(charts.aqi_trends) }}
+    </div>
+
+    <!-- PM Charts Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        {{ chart_card(charts.pm25_trends) }}
+        {{ chart_card(charts.pm10_trends) }}
+    </div>
+
+    <!-- Cities List -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Monitored Cities</h3>
+        <div class="flex flex-wrap gap-2">
+            {% for city in cities %}
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                {{ city }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

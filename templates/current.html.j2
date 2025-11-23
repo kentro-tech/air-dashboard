@@ -1,0 +1,64 @@
+{% extends "base.html.j2" %}
+{% from "components/macros.html.j2" import stat_card, chart_card, city_table %}
+
+{% block content %}
+<main class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Global Air Quality Monitor</h1>
+        <p class="text-gray-600">Real-time air pollution data from major cities worldwide</p>
+    </div>
+
+    <!-- Overview Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        {{ stat_card(stats.total_cities, "Cities Monitored", "blue") }}
+        {{ stat_card(stats.avg_aqi, "Average AQI", "green") }}
+        {{ stat_card(stats.avg_pm25, "Avg PM2.5 (μg/m³)", "amber") }}
+        {{ stat_card(stats.poor_or_worse, "Poor or Worse", "red") }}
+    </div>
+
+    <!-- City Data Table -->
+    <div class="mb-8">
+        {{ city_table("Air Quality by City", cities) }}
+    </div>
+
+    <!-- Main Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        {{ chart_card(charts.pollutant_comparison) }}
+        {{ chart_card(charts.component_breakdown) }}
+    </div>
+
+    <!-- Secondary Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        {{ chart_card(charts.pm_comparison) }}
+        {{ chart_card(charts.aqi_distribution) }}
+    </div>
+
+    <!-- Info Section -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
+        <h3 class="text-lg font-bold text-blue-900 mb-2">About Air Quality Index (AQI)</h3>
+        <div class="text-sm text-blue-800 space-y-2">
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-4 h-4 bg-green-500 rounded"></span>
+                <span><strong>Good (1):</strong> Air quality is satisfactory</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-4 h-4 bg-cyan-500 rounded"></span>
+                <span><strong>Fair (2):</strong> Air quality is acceptable</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-4 h-4 bg-amber-500 rounded"></span>
+                <span><strong>Moderate (3):</strong> Sensitive groups may experience health effects</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-4 h-4 bg-red-500 rounded"></span>
+                <span><strong>Poor (4):</strong> Health effects may be experienced by all</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-block w-4 h-4 bg-purple-500 rounded"></span>
+                <span><strong>Very Poor (5):</strong> Health alert - everyone may experience serious effects</span>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

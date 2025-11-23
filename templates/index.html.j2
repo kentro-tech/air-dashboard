@@ -1,0 +1,71 @@
+{% extends "base.html.j2" %}
+
+{% block title %}Air Framework Demo - Air Quality Dashboard{% endblock %}
+
+{% block content %}
+<main class="container mx-auto px-4 py-12 max-w-4xl">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-gray-900 mb-4">Air Framework Demo</h1>
+        <p class="text-xl text-gray-600 mb-6">
+            A demonstration of the Air web framework for Python
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="https://github.com/feldroy/air" target="_blank"
+               class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition">
+                View Air on GitHub
+            </a>
+            <a href="https://feldroy.github.io/air/" target="_blank"
+               class="bg-white hover:bg-gray-50 text-blue-600 font-semibold px-6 py-3 rounded-lg border-2 border-blue-500 transition">
+                Read Documentation
+            </a>
+        </div>
+    </div>
+
+    <!-- What is Air -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">About This Demo</h2>
+        <p class="text-gray-700 text-lg mb-4">
+            Air is a modern Python web framework built on top of Starlette. This demo showcases
+            building interactive dashboards with data visualization and charting using Air.
+        </p>
+        <p class="text-gray-600 text-sm">
+            Air quality data provided by <a href="https://open-meteo.com/" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold">Open-Meteo</a>,
+            a free weather API with no API key required.
+        </p>
+    </div>
+
+    <!-- Demo Dashboards -->
+    <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Explore the Demos</h2>
+
+        <!-- Current Dashboard Card -->
+        <div class="border-2 border-gray-200 rounded-lg p-6 mb-4 hover:border-blue-500 hover:shadow-md transition">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+                <a href="/current" class="hover:text-blue-600">Current Air Quality</a>
+            </h3>
+            <p class="text-gray-600 mb-4">
+                Real-time air pollution data visualization with bar charts, pie charts, and scatter plots.
+                Demonstrates static data fetching and multi-chart rendering.
+            </p>
+            <a href="/current" class="text-blue-600 font-semibold hover:text-blue-800">
+                View Dashboard →
+            </a>
+        </div>
+
+        <!-- Trends Dashboard Card -->
+        <div class="border-2 border-gray-200 rounded-lg p-6 hover:border-blue-500 hover:shadow-md transition">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+                <a href="/trends" class="hover:text-blue-600">Air Quality Trends</a>
+            </h3>
+            <p class="text-gray-600 mb-4">
+                Historical air quality trends over time with interactive line charts.
+                Demonstrates time-series data handling and dynamic visualizations.
+            </p>
+            <a href="/trends" class="text-blue-600 font-semibold hover:text-blue-800">
+                View Trends →
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}
